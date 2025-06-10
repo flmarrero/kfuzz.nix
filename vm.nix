@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
-
+let testmod = import ./test { inherit pkgs; };
+in
 {
   boot = {
     kernelPackages = pkgs.linuxPackagesFor
@@ -49,6 +50,8 @@
         ignoreConfigErrors = true;
       });
 
+    extraModulePackages = [ testmod ];
+
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
@@ -67,4 +70,6 @@
       prefixLength = 24;
     }];
   };
+
+  system.stateVersion = "25.05";
 }

@@ -8,6 +8,6 @@
       let pkgs = import nixpkgs { inherit system; };
       in {
         devShells.default =
-          pkgs.mkShell { nativeBuildInputs = with pkgs; [ nixfmt syzkaller ]; };
+          pkgs.mkShell { nativeBuildInputs = with pkgs; [ nixfmt syzkaller clang-tools ]; };
       });
 }
