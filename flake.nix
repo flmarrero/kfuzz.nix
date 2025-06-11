@@ -7,7 +7,8 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; };
       in {
-        devShells.default =
-          pkgs.mkShell { nativeBuildInputs = with pkgs; [ nixfmt syzkaller clang-tools ]; };
+        devShells.default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [ nixfmt syzkaller clang-tools ];
+        };
       });
 }

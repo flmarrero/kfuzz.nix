@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 let testmod = import ./test { inherit pkgs; };
-in
-{
+in {
   boot = {
     kernelPackages = pkgs.linuxPackagesFor
       (pkgs.linuxPackages_testing.kernel.override {
