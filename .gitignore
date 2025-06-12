@@ -1,5 +1,6 @@
 .direnv/
 result
-*.qcow2
+*.img
 vm.raw
 .syzkaller.conf
+syzkaller_ssh*
