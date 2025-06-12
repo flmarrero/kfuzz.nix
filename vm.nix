@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
-let testmod = import ./test { inherit pkgs; };
+{ pkgs, lib, linux, ... }:
+let testmod = import ./test { inherit pkgs linux; };
 in {
   boot = {
     kernelPackages = pkgs.linuxPackagesFor
-      (pkgs.linuxPackages_testing.kernel.override {
+      (linux.kernel.override {
         structuredExtraConfig = with lib.kernel; {
           # Coverage & Debugging
           KCOV = yes;
@@ -49,7 +49,7 @@ in {
         ignoreConfigErrors = true;
       });
 
-    extraModulePackages = [ testmod ];
+    #extraModulePackages = [ testmod ];
 
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -69,6 +69,10 @@ in {
       prefixLength = 24;
     }];
   };
+
+  environment.systemPackages = [
+    pkgs.syzkaller
+  ];
 
   system.stateVersion = "25.05";
 }

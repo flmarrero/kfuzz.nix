@@ -1,2 +1,5 @@
-result/
+.direnv/
+result
 *.qcow2
+vm.raw
+.syzkaller.conf

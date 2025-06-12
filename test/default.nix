@@ -1,13 +1,9 @@
-{ 
-  pkgs
-}:
+{ pkgs, linux }:
 
 let
-  kernel = pkgs.linuxPackages_testing.kernel;
-  lib = pkgs.lib;
+  kernel = linux.kernel;
   stdenv = pkgs.stdenv;
-in
-stdenv.mkDerivation {
+in stdenv.mkDerivation {
   pname = "kfuzz-test-driver";
   version = "0.0.0-dev";
 
